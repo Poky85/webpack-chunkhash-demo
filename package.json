@@ -25,8 +25,9 @@
 		"plugin"
 	],
 	"scripts": {
-		"default": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.js",
-		"md5-plugin": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.md5.js",
-		"chunkhash-plugin": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.chunkhash.js"
+		"test": "./test/run.sh",
+		"webpack-default": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.js",
+		"webpack-md5-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-md5-hash.js",
+		"webpack-chunk-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-chunk-hash.js"
 	}
 }
