@@ -1,0 +1,32 @@
+{
+	"name": "webpack-chunkhash-demo",
+	"version": "0.1.0",
+	"description": "Simple demo to test various Webpack algorithms for chunks hashing",
+	"main": "entry1.js",
+	"devDependencies": {
+		"chunk-manifest-webpack-plugin": "^0.1.0",
+		"webpack": "^1.13.3",
+		"webpack-chunk-hash": "^0.2.0",
+		"webpack-md5-hash": "^0.0.5"
+	},
+	"dependencies": {
+	},
+	"author": "Jiri Pokorny <mail@jiripokorny.cz>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:Poky85/webpack-chunkhash-demo.git"
+	},
+	"keywords": [
+		"webpack",
+		"chunkhash",
+		"hash",
+		"md5",
+		"plugin"
+	],
+	"scripts": {
+		"default": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.js",
+		"md5-plugin": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.md5.js",
+		"chunkhash-plugin": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.chunkhash.js"
+	}
+}
