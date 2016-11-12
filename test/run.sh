@@ -1,6 +1,7 @@
 #!/bin/sh
 
 OUTPUT_DIRECTORY=~/webpack-chunkhash-demo
+mkdir -p dist
 
 # Run various builds using default Webpack hash algorithm
 # -------------------------------------------------------

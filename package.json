@@ -25,7 +25,7 @@
 		"plugin"
 	],
 	"scripts": {
-		"test": "./test/run.sh",
+		"test": "chmod +x test/run.sh && ./test/run.sh",
 		"webpack-default": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.js",
 		"webpack-md5-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-md5-hash.js",
 		"webpack-chunk-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-chunk-hash.js"
