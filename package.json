@@ -6,7 +6,7 @@
 	"devDependencies": {
 		"chunk-manifest-webpack-plugin": "^0.1.0",
 		"webpack": "^1.13.3",
-		"webpack-chunk-hash": "^0.2.0",
+		"webpack-chunk-hash": "^0.3.0",
 		"webpack-md5-hash": "^0.0.5"
 	},
 	"dependencies": {

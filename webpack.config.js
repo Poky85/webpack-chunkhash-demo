@@ -1,5 +1,4 @@
 var webpack = require("webpack");
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
 
 var config = {
 
@@ -21,10 +20,6 @@ var config = {
 	},
 
 	plugins: [
-		new ChunkManifestPlugin({
-			filename: "webpack-manifest.json",
-			manifestVariable: "webpackManifest"
-		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: "vendor"
 		}),
