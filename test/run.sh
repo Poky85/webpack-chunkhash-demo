@@ -1,55 +1,29 @@
 #!/bin/sh
 
-OUTPUT_DIRECTORY=~/webpack-chunkhash-demo
-mkdir -p dist
+SRC_DIRECTORY=src
+DIST_DIRECTORY=dist
+DATE=`date +%Y-%m-%d\_%H\-%M\-%S`
 
-# Run various builds using default Webpack hash algorithm
-# -------------------------------------------------------
-git checkout master
-npm run webpack-default
-mkdir -p "$OUTPUT_DIRECTORY/webpack-default/master"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-default/master" --exclude node_modules
+mkdir -p $DIST_DIRECTORY
 
-git checkout testcase-1
-npm run webpack-default
-mkdir -p "$OUTPUT_DIRECTORY/webpack-default/testcase-1"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-default/testcase-1" --exclude node_modules
+for algo in webpack-default webpack-md5-hash webpack-chunk-hash
+	do
+		for t in {1..3}
+			do
+				mkdir -p "$SRC_DIRECTORY/current-testcase"
+				mkdir -p "$DIST_DIRECTORY/current-dist"
+				rsync -av "$SRC_DIRECTORY/testcase-$t/" "$SRC_DIRECTORY/current-testcase"
 
-git checkout testcase-2
-npm run webpack-default
-mkdir -p "$OUTPUT_DIRECTORY/webpack-default/testcase-2"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-default/testcase-2" --exclude node_modules
+				TESTING=true webpack --progress --profile --colors --config "webpack.config.$algo.js"
 
-# Run various builds using webpack-md5-hash plugin
-# ------------------------------------------------
-git checkout master
-npm run webpack-md5-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-md5-hash/master"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-md5-hash/master" --exclude node_modules
+				mkdir -p "$DIST_DIRECTORY/$DATE/src"
+				mkdir -p "$DIST_DIRECTORY/$DATE/dist/$algo/testcase-$t"
+				cp webpack.config.js "$DIST_DIRECTORY/$DATE/"
+				cp webpack.config.$algo.js "$DIST_DIRECTORY/$DATE/"
+				rsync -av "$SRC_DIRECTORY/testcase-$t/" "$DIST_DIRECTORY/$DATE/src/"
+				rsync -av "$DIST_DIRECTORY/current-dist/" "$DIST_DIRECTORY/$DATE/dist/$algo/testcase-$t"
 
-git checkout testcase-1
-npm run webpack-md5-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-md5-hash/testcase-1"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-md5-hash/testcase-1" --exclude node_modules
-
-git checkout testcase-2
-npm run webpack-md5-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-md5-hash/testcase-2"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-md5-hash/testcase-2" --exclude node_modules
-
-# Run various builds using webpack-chunk-hash plugin
-# --------------------------------------------------
-git checkout master
-npm run webpack-chunk-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-chunk-hash/master"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-chunk-hash/master" --exclude node_modules
-
-git checkout testcase-1
-npm run webpack-chunk-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-chunk-hash/testcase-1"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-chunk-hash/testcase-1" --exclude node_modules
-
-git checkout testcase-2
-npm run webpack-chunk-hash
-mkdir -p "$OUTPUT_DIRECTORY/webpack-chunk-hash/testcase-2"
-rsync -av . "$OUTPUT_DIRECTORY/webpack-chunk-hash/testcase-2" --exclude node_modules
+				rm -rf "$SRC_DIRECTORY/current-testcase"
+				rm -rf "$DIST_DIRECTORY/current-dist"
+			done
+	done

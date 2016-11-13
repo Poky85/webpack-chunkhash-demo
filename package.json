@@ -1,6 +1,6 @@
 {
 	"name": "webpack-chunkhash-demo",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Simple demo to test various Webpack algorithms for chunks hashing",
 	"main": "entry1.js",
 	"devDependencies": {
@@ -25,9 +25,6 @@
 		"plugin"
 	],
 	"scripts": {
-		"test": "chmod +x test/run.sh && ./test/run.sh",
-		"webpack-default": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.js",
-		"webpack-md5-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-md5-hash.js",
-		"webpack-chunk-hash": "rm -rf dist/* && webpack --progress --profile --colors --config webpack.config.webpack-chunk-hash.js"
+		"test": "chmod +x test/run.sh && ./test/run.sh"
 	}
 }
