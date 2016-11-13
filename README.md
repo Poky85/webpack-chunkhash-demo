@@ -27,44 +27,40 @@ Script will produce builds for following Webpack hashing algorithms:
 * Hashing using webpack-md5-hash plugin (https://www.npmjs.com/package/webpack-md5-hash)
 * Hashing using webpack-chunk-hash plugin (https://www.npmjs.com/package/webpack-chunk-hash)
 
-For each algorithm several different builds are created – so you can track what happens when something changes. Particular testscases are found in GIT branches:
+For each algorithm several different builds are created – so you can track what happens when something changes. Particular testscases are found in `src` directory.
 
-* origin/master
-* origin/testcase-1
-* origin/testcase-2
-
-Builds will be created in `~/webpack-chunkhash-demo` with following structure:
+Builds will be created in `dist` with following structure:
 ```
 |-- webpack-default
-    |-- master
-        |-- src
-        |-- dist
     |-- testcase-1
         |-- src
         |-- dist
     |-- testcase-2
+        |-- src
+        |-- dist
+    |-- testcase-3
         |-- src
         |-- dist
 
 |-- webpack-md5-hash
-    |-- master
-        |-- src
-        |-- dist
     |-- testcase-1
         |-- src
         |-- dist
     |-- testcase-2
+        |-- src
+        |-- dist
+    |-- testcase-3
         |-- src
         |-- dist
 
 |-- webpack-chunk-hash
-    |-- master
-        |-- src
-        |-- dist
     |-- testcase-1
         |-- src
         |-- dist
     |-- testcase-2
+        |-- src
+        |-- dist
+    |-- testcase-3
         |-- src
         |-- dist
 ```
